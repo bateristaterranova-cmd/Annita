@@ -25,7 +25,7 @@ export const GratitudeLetter: React.FC = () => {
             <span className="text-amber-400 text-lg">🌻</span>
           </h2>
           <p className="text-xs text-amber-400/80 mt-0.5">
-            De alguien que jamás olvidará tu apoyo.
+            Para una persona sumamente especial.
           </p>
         </div>
 
@@ -44,31 +44,30 @@ export const GratitudeLetter: React.FC = () => {
           </p>
 
           <p>
-            Aunque el tiempo avance y hoy tengamos caminos distintos, hay cosas
-            que no cambian: mi admiración, mi respeto y sobre todo mi
-            agradecimiento sincero. Siempre estuviste ahí para mí, creíste en mis
-            proyectos y me diste tu mano cuando más lo necesité.
+            Gracias por ser esa persona que siempre está ahí, por tu apoyo incondicional
+            en cada paso que doy, por escucharme, por creer en mí y por darme siempre
+            tu mano. Contar contigo es algo que valoro con todo el corazón.
           </p>
 
           <p>
-            Gracias por todo lo que compartimos, por cada risa, por cada consejo
+            Gracias por tu paciencia, por cada risa compartida, por cada consejo sincero
             y por el gran corazón que tienes. Eres una mujer maravillosa que
-            merece que todos sus sueños se hagan realidad.
+            merece que la vida le regale lo más bonito y que todos sus sueños se hagan realidad.
           </p>
 
           <div className="p-3 bg-amber-500/10 border-l-2 border-amber-400 rounded-r-xl text-amber-200/90 text-xs italic font-serif my-2">
             "Estas flores amarillas digitales nunca se van a marchitar, igual
-            que mi gratitud y mi aprecio eterno hacia ti."
+            que mi cariño, mi admiración y mi gratitud sincera hacia ti."
           </div>
         </div>
 
         {/* Firma cálida */}
         <div className="mt-5 pt-3 border-t border-amber-500/20 text-right">
           <span className="text-sm font-serif italic text-amber-200">
-            Con mucho cariño y agradecimiento,
+            Con todo mi cariño,
           </span>
           <p className="text-xs text-amber-400 font-medium mt-0.5">
-            Siempre aquí para ti 💛
+            Siempre para ti 💛
           </p>
         </div>
       </div>

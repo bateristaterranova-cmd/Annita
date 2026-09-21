@@ -10,13 +10,14 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
+  // Intentar reproducir cuando se abre el sobre o cuando el usuario interactúa
   useEffect(() => {
     if (autoPlayTrigger && audioRef.current && !isPlaying) {
       audioRef.current
         .play()
         .then(() => setIsPlaying(true))
         .catch(() => {
-          // Si el navegador móvil bloquea autoplay, se reproducirá en el siguiente click
+          // El navegador móvil requirió un tap explícito
           setIsPlaying(false);
         });
     }
@@ -31,7 +32,10 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
       audioRef.current
         .play()
         .then(() => setIsPlaying(true))
-        .catch(console.error);
+        .catch((err) => {
+          console.error("Error al reproducir:", err);
+          setIsPlaying(false);
+        });
     }
   };
 
@@ -43,7 +47,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
   };
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <>
       <audio
         ref={audioRef}
         src="/audio/cristina-instrumental.mp3"
@@ -51,43 +55,49 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoPlayTrigger }) => 
         preload="auto"
       />
 
-      <div
-        onClick={togglePlay}
-        className="flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-slate-900/80 backdrop-blur-md border border-amber-500/30 text-amber-300 shadow-lg shadow-amber-500/10 cursor-pointer active:scale-95 transition-all duration-300"
-      >
-        <div className="relative flex items-center justify-center">
-          <Disc
-            className={`w-4 h-4 text-amber-400 ${
-              isPlaying ? 'animate-spin' : ''
-            }`}
-            style={{ animationDuration: '4s' }}
-          />
-          {isPlaying && (
-            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-          )}
+      {/* ESTADO 1: NO ESTÁ SONANDO -> Botón super llamativo, centrado y animado para que no se le pase */}
+      {!isPlaying && (
+        <div className="fixed top-4 inset-x-0 mx-auto z-50 flex justify-center px-4 pointer-events-none">
+          <button
+            onClick={togglePlay}
+            className="pointer-events-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-2xl shadow-yellow-500/60 border-2 border-white animate-bounce cursor-pointer active:scale-95 transition-all"
+            aria-label="Activar música de fondo"
+          >
+            <Volume2 className="w-4 h-4 text-slate-950 animate-pulse" />
+            <span>👉 Toca aquí para poner la música 🎵</span>
+          </button>
         </div>
+      )}
 
-        <div className="flex flex-col text-left">
-          <span className="text-[11px] font-semibold tracking-wide text-amber-200">
-            Cristina
-          </span>
-          <span className="text-[9px] text-amber-400/80 -mt-0.5">
-            {isPlaying ? 'Sonando 🎵' : 'Pausado'}
-          </span>
+      {/* ESTADO 2: YA ESTÁ SONANDO -> Se vuelve discreto, elegante y no molesta en la esquina */}
+      {isPlaying && (
+        <div className="fixed top-3 right-3 z-50">
+          <div
+            onClick={togglePlay}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/70 backdrop-blur-md border border-amber-500/25 text-amber-300/80 shadow-md cursor-pointer active:scale-95 transition-all duration-300"
+          >
+            <Disc
+              className="w-3.5 h-3.5 text-amber-400 animate-spin"
+              style={{ animationDuration: '4s' }}
+            />
+            <span className="text-[10px] font-medium tracking-wide text-amber-200/90">
+              Cristina 🎵
+            </span>
+
+            <button
+              onClick={toggleMute}
+              className="p-1 rounded-full hover:bg-amber-500/20 text-amber-300/80 transition-colors ml-0.5"
+              aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
+            >
+              {isMuted ? (
+                <VolumeX className="w-3 h-3 text-amber-500/60" />
+              ) : (
+                <Volume2 className="w-3 h-3 text-amber-400" />
+              )}
+            </button>
+          </div>
         </div>
-
-        <button
-          onClick={toggleMute}
-          className="p-1 rounded-full hover:bg-amber-500/20 text-amber-300/80 transition-colors ml-1"
-          aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
-        >
-          {isMuted ? (
-            <VolumeX className="w-3.5 h-3.5 text-amber-500/60" />
-          ) : (
-            <Volume2 className="w-3.5 h-3.5 text-amber-400" />
-          )}
-        </button>
-      </div>
-    </div>
+      )}
+    </>
   );
 };

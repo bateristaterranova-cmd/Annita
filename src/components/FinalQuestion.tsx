@@ -15,7 +15,6 @@ export const FinalQuestion: React.FC<FinalQuestionProps> = ({ onReset }) => {
       navigator.vibrate([100, 50, 100, 50, 150]);
     }
 
-    // Explosión estelar de confeti en pantalla completa
     const duration = 3 * 1000;
     const end = Date.now() + duration;
 
@@ -73,7 +72,7 @@ export const FinalQuestion: React.FC<FinalQuestionProps> = ({ onReset }) => {
           </p>
 
           <div className="flex flex-col gap-3">
-            {/* Botón principal exigido por el usuario */}
+            {/* Botón principal exigido */}
             <button
               onClick={handleAccept}
               className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-yellow-400 via-amber-300 to-amber-400 text-slate-950 font-bold text-base shadow-lg shadow-amber-400/30 hover:shadow-amber-400/50 active:scale-95 transition-all flex items-center justify-center gap-2"
@@ -82,7 +81,7 @@ export const FinalQuestion: React.FC<FinalQuestionProps> = ({ onReset }) => {
               <Sparkles className="w-5 h-5 text-slate-950" />
             </button>
 
-            {/* Botón juguetón que cambia de texto */}
+            {/* Botón juguetón */}
             <button
               onClick={handleShyClick}
               className="w-full py-2.5 px-4 rounded-xl text-xs font-medium text-amber-300/60 hover:text-amber-300 transition-colors"
@@ -104,19 +103,19 @@ export const FinalQuestion: React.FC<FinalQuestionProps> = ({ onReset }) => {
           </h3>
 
           <p className="text-slate-200 text-sm leading-relaxed mb-4">
-            Gracias por haber sido esa persona que creyó en mí, que me dio su
-            apoyo sincero y que me enseñó tanto. Aunque hoy tengamos rumbos
-            distintos, siempre tendrás un lugar de mucho aprecio en mi vida.
+            Gracias por ser esa persona que siempre cree en mí, que me apoya en todo y que
+            llena mis días de cosas bonitas. Eres alguien sumamente importante en mi vida
+            y siempre voy a estar aquí para ti.
           </p>
 
           <div className="p-3.5 bg-amber-400/10 border border-amber-400/20 rounded-2xl text-amber-200 font-serif italic text-sm mb-6">
             "Que nunca te falten razones para sonreír y que la vida te devuelva
-            multiplicado todo lo bonito que entregas."
+            multiplicado todo lo hermoso que entregas."
           </div>
 
           <div className="flex items-center justify-center gap-2 text-xs text-amber-400 font-semibold mb-4">
             <Smile className="w-4 h-4" />
-            <span>¡Feliz 21 de Septiembre, Annita!</span>
+            <span>¡Feliz 21 de Septiembre, Annita hermosa! 💛</span>
           </div>
 
           <button
